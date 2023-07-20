@@ -1,13 +1,11 @@
 import { AttachmentIcon, ChevronRightIcon, EmailIcon } from "@chakra-ui/icons";
-import { Avatar, Button, Card, CardBody, CircularProgress, FormControl, FormHelperText, FormLabel, HStack, Heading, Input, InputGroup, InputRightElement, Select, SimpleGrid, Stack, StackDivider, Text, Textarea, VStack, useToast } from "@chakra-ui/react";
+import { Avatar, Button, Card, CardBody, FormControl, FormLabel, HStack, Heading, Input, InputGroup, InputRightElement, Select, SimpleGrid, StackDivider, Text, VStack, useToast } from "@chakra-ui/react";
 import gmail_img from "./assets/gmail.jpg"
-import pdf_icon from "./assets/pdf.png"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { HOST, emailsContext, emailswithAttachmentContext, isAuthenticatedContext, loaderContext } from "./GlobalComponents";
-import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-import LoginOAuth2 from "@okteto/react-oauth2-login";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import {  useGoogleLogin } from "@react-oauth/google";
 
 const Home = () => {
     const toast = useToast();
@@ -16,10 +14,7 @@ const Home = () => {
         enable_serial_consent: false,
         flow: 'auth-code',
         onSuccess: (response) => {
-            console.log(response)
             axios.get(HOST + "/get_token/?code=" + response.code).then((res) => {
-
-                console.log(res.data);
                 const access_token = res.data.fetch_mail.access_token;
                 if (access_token) {
                     toast({
@@ -37,7 +32,7 @@ const Home = () => {
                         isClosable: true,
                     });
                 }
-            }).catch((err) => {
+            }).catch(() => {
                 toast({
                     title: `Something went wrong, Please try again`,
                     status: 'error',
@@ -100,7 +95,7 @@ const Inbox = () => {
                 setEmail(response.data.messages);
                 setNextPageToken(response.data.nextPageToken);
                 setLoading(false)
-            }).catch(err => {
+            }).catch(() => {
 
                 toast({
                     title: `An error occured, Please try again`,
@@ -122,7 +117,7 @@ const Inbox = () => {
             setEmail([...emails, ...response.data.messages]);
             setNextPageToken(response.data.nextPageToken);
             setLoading(false)
-        }).catch(err => {
+        }).catch(() => {
 
             toast({
                 title: `An error occured, Please try again`,
@@ -168,7 +163,6 @@ const Inbox = () => {
 };
 
 const MailBody = () => {
-    const { emails } = useContext(emailsContext);
     const location = useLocation();
     let inbox: inbox = location.state ? location.state.inbox : null;
     if (!inbox) {
@@ -196,13 +190,9 @@ const MailBody = () => {
 
 }
 
-const applyChange = (str: string) => {
-
-}
 
 export const MailBodyForm = () => {
-    const { emails } = useContext(emailsContext);
-    const { loading, setLoading } = useContext(loaderContext);
+    const { setLoading } = useContext(loaderContext);
 
     const location = useLocation();
     let inbox: inbox = location.state ? location.state.inbox : null;
@@ -256,17 +246,10 @@ export const MailBodyForm = () => {
                 dates: dates && dates[0],
                 phone_no: phone_no && phone_no[0]
             })
-            console.log('====================================');
-            console.log(name);
-            console.log(address);
-            console.log(url);
-            console.log(phone_no);
-            console.log('====================================');
+            
 
-        }).catch(err => {
-            console.log('====================================');
-            console.log(err);
-            console.log('====================================');
+        }).catch(() => {
+            
             toast({
                 title: `An error occured, Please try again`,
                 status: 'error',
@@ -317,7 +300,6 @@ export const MailBodyForm = () => {
 
         const regexes = [email_regex, url_regex, date_regex, phone_no_regex]
         const values = []
-        const states = [matched_email, matched_url, matched_date, matched_phone]
 
         for (let index = 0; index < regexes.length; index++) {
             const regex = regexes[index];
@@ -353,7 +335,7 @@ export const MailBodyForm = () => {
         event.preventDefault();
         setLoading(true)
         const formData = new FormData(event.currentTarget);
-        axios.post(HOST + '/create_attachment/', formData).then((response) => {
+        axios.post(HOST + '/create_attachment/', formData).then(() => {
             toast({
                 title: `Form Submitted successfully`,
                 status: 'success',
@@ -489,7 +471,7 @@ const Documents = () => {
                 setNextPageToken(response.data.nextPageToken);
 
                 setLoading(false)
-            }).catch(err => {
+            }).catch(() => {
 
                 toast({
                     title: `An error occured, Please try again`,
@@ -510,7 +492,7 @@ const Documents = () => {
             setEmail([...emails, ...response.data.messages]);
             setNextPageToken(response.data.nextPageToken);
             setLoading(false)
-        }).catch(err => {
+        }).catch(() => {
 
             toast({
                 title: `An error occured, Please try again`,
@@ -554,7 +536,7 @@ const Documents = () => {
 
 const Profile = () => {
     const toast = useToast();
-    const { loading, setLoading } = useContext(loaderContext);
+    const { setLoading } = useContext(loaderContext);
 
     const [User, setUser] = useState({
         email: '',
@@ -570,7 +552,7 @@ const Profile = () => {
             setUser(response.data);
             setLoading(false)
 
-        }).catch((response) => {
+        }).catch(() => {
             toast({
                 title: `An error occured, Please try again`,
                 status: 'error',
@@ -611,7 +593,7 @@ const SavedDetailsView = () => {
         urls: string
     }
     const toast = useToast();
-    const { loading, setLoading } = useContext(loaderContext);
+    const { setLoading } = useContext(loaderContext);
 
     const [Data, setData] = useState<detail[]>([]);
     useEffect(() => {
@@ -621,7 +603,7 @@ const SavedDetailsView = () => {
             setData(response.data);
             setLoading(false)
 
-        }).catch((response) => {
+        }).catch(() => {
             toast({
                 title: `An error occured, Please try again`,
                 status: 'error',

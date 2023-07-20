@@ -1,5 +1,5 @@
-import { Box, Button, Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay, Heading, IconButton, Link, VStack } from '@chakra-ui/react'
-import { AttachmentIcon, CalendarIcon, EditIcon, EmailIcon, HamburgerIcon, InfoIcon, SettingsIcon } from '@chakra-ui/icons'
+import { Box, Button, Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay, Heading, IconButton, VStack } from '@chakra-ui/react'
+import { AttachmentIcon, CalendarIcon, EditIcon, EmailIcon, HamburgerIcon, InfoIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom'
 import { createContext } from 'react';
 import { inbox } from './PageComponents';
@@ -43,7 +43,7 @@ const SideDrawer = ({open, closeDrawer}: {open: boolean, closeDrawer: () => void
     )
 }
 
-export const HOST = 'http://127.0.0.1:8000'
+export const HOST = 'https://fetchmail.pythonanywhere.com'
 
 
 export { NavBar, SideDrawer, emailsContext, loaderContext, emailswithAttachmentContext,isAuthenticatedContext}
