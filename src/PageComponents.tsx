@@ -203,7 +203,6 @@ export const MailBodyForm = () => {
 
     const toast = useToast();
 
-    const [content, setcontent] = useState('');
     const [inputvalues, setinputvalues] = useState({
         name: '',
         address: '',
@@ -233,8 +232,6 @@ export const MailBodyForm = () => {
         setLoading(true)
 
         axios.get(HOST + '/attachment/' + inbox.id + '/').then((response) => {
-            console.log(response.data)
-            setcontent(response.data.value)
             let [email, url, dates, phone_no] = applyContent(response.data.value);
             let [name,address,date_of_birth] = applyInfo(response.data.info);
             setinputvalues({
@@ -296,7 +293,6 @@ export const MailBodyForm = () => {
         return [names,address,birth_date]
     }
     const applyContent = (content: string) => {
-        console.log(content);
 
         const regexes = [email_regex, url_regex, date_regex, phone_no_regex]
         const values = []
