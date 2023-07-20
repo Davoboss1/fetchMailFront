@@ -1,0 +1,102 @@
+#root{
+  width: 100%;
+}
+
+.navbar{
+  background: #0f0c29;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 60px;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-card{
+  background: #0F2027;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+color: white;
+}
+
+.gradient-bg{
+  background: #0f0c29;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+.home-card span{
+  color: white;
+  font-size: 25px;
+}
+
+a{
+  display: block;
+  width: 100%;
+}
+
+a:hover{
+  color: #004055 !important;
+}
+
+.loaderContainer{
+  background-color: black;
+  position: fixed;
+  top: 0;
+  opacity: 0.9;
+  height: 100%;
+  width: 100%;
+}
+
+.loader{
+  background-color: white;
+  position: fixed !important;
+  padding: 20px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.main-img{
+   width: 50%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gradient-bg{
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .gradient-bg{
+    height: auto !important;
+    padding-bottom: 40px;
+    margin-left: auto;
+  margin-right: auto;
+  }
+  .main-img{
+    height: auto !important;
+  }
+  .home-container{
+    flex-wrap: wrap;
+  }
+}
+
+.document-view{
+  height: 600px;
+  width: 650px;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  .document-view{
+    width: 95vw;
+  }
+}
