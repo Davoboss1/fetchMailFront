@@ -43,7 +43,7 @@ const SideDrawer = ({open, closeDrawer}: {open: boolean, closeDrawer: () => void
     )
 }
 
-export const HOST = 'https://django-server-production-5735.up.railway.app'
+export const HOST = 'https://fetchmail.pythonanywhere.com'
 
 
 export { NavBar, SideDrawer, emailsContext, loaderContext, emailswithAttachmentContext,isAuthenticatedContext}

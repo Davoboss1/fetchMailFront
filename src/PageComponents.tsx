@@ -1,6 +1,7 @@
 import { AttachmentIcon, ChevronRightIcon, EmailIcon } from "@chakra-ui/icons";
 import { Avatar, Button, Card, CardBody, FormControl, FormLabel, HStack, Heading, Input, InputGroup, InputRightElement, Select, SimpleGrid, StackDivider, Text, VStack, useToast } from "@chakra-ui/react";
 import gmail_img from "./assets/gmail.jpg"
+import google_icon from "./assets/google-color-svgrepo-com.svg"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { HOST, emailsContext, emailswithAttachmentContext, isAuthenticatedContext, loaderContext } from "./GlobalComponents";
@@ -53,8 +54,8 @@ const Home = () => {
                 <HStack spacing={10}>
                     {!isAuthenticated ?
                         (
-                            <Button onClick={() => login()} variant="solid">
-                                Sign in with your Google account
+                            <Button leftIcon={<img src={google_icon} height={"20"} width={"20"} />} onClick={() => login()} variant="solid">
+                                Sign in with Google
                             </Button>
                         )
                         :
