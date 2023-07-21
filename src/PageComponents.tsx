@@ -15,7 +15,9 @@ const Home = () => {
         enable_serial_consent: false,
         flow: 'auth-code',
         onSuccess: (response) => {
-            axios.get(HOST + "/get_token/?code=" + response.code).then((res) => {
+            axios.post(HOST + "/auth/convert-tokens/",{
+                code: response.code
+            }).then((res) => {
                 const access_token = res.data.fetch_mail.access_token;
                 if (access_token) {
                     toast({
